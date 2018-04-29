@@ -29,8 +29,11 @@
     <p class="player__song">
       {{ song }}
     </p>
-    <div class="player__timelineBar">
-      <div id="playhead" [ngStyle]="{width: progression+'%'}"></div>
-    </div>
+
+    <button class="player__timelineHit" (click)="onChangeTimelinekHandler($event)">
+      <div class="player__timelineBar" #timelineBar>
+        <div id="playhead" [ngStyle]="{width: progression+'%'}"></div>
+      </div>
+    </button>
   </div>
 </div>

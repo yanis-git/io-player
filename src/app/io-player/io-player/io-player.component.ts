@@ -1,11 +1,12 @@
 import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {fromEvent, Observable, Subscription} from 'rxjs/index';
-import {map} from 'rxjs/internal/operators';
+import {Subscription} from 'rxjs/index';
+import {IoPlayerService} from './io-player.service';
 
 @Component({
   selector: 'io-player',
   templateUrl: './io-player.component.html',
-  styleUrls: ['./io-player.component.scss']
+  styleUrls: ['./io-player.component.scss'],
+  providers: [IoPlayerService]
 })
 export class IoPlayerComponent implements OnInit, OnDestroy {
 
@@ -16,17 +17,19 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
   @Input('song') song: string;
 
   @ViewChild('coverEl') coverElement: ElementRef;
-
+  @ViewChild('timelineBar') timelineElement: ElementRef;
   public isPlaying = false;
   public progression: number = 0;
-  private audio: HTMLAudioElement;
-
   private subscriptions: Subscription[] = [];
 
-  constructor() { }
+  constructor(public playerService: IoPlayerService) { }
 
   ngOnInit() {
-    this.initPlayer();
+    this.playerService.init(this.source);
+    this.subscriptions.push(
+        this.playerService.isPlaying$.subscribe(state => this.isPlaying = state),
+        this.playerService.percentageReaded$.subscribe(state => this.progression = state)
+    );
   }
 
   ngOnDestroy() {
@@ -35,42 +38,13 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
 
   onPlayHandler() {
     if (!this.isPlaying) {
-      this.play();
+      this.playerService.play();
     } else {
-      this.pause();
+      this.playerService.pause();
     }
   }
-
-  private play() {
-    this.audio.play();
-    this.isPlaying = true;
-  }
-
-  private pause() {
-    this.audio.pause();
-
-    this.isPlaying = false;
-  }
-
-  private initPlayer() {
-    this.audio = document.createElement('audio');
-    this.subscriptions.push(
-      this.percentageReaded$.subscribe(percentage => {
-          this.progression = percentage;
-      }),
-      this.audioFinish$.subscribe(() => this.isPlaying = false)
-    );
-    this.audio.src = this.source;
-  }
-
-  get percentageReaded$(): Observable<number> {
-      return fromEvent(this.audio, 'timeupdate').pipe(map(() => {
-          return (this.audio.currentTime / this.audio.duration) * 100;
-      }));
-  }
-  get audioFinish$(): Observable<void> {
-      return fromEvent(this.audio, 'ended').pipe(map((e) => {
-        return null;
-      }));
+  onChangeTimelinekHandler($event: MouseEvent) {
+      const percentage = Math.floor(($event.offsetX / this.timelineElement.nativeElement.offsetWidth) * 100);
+      this.playerService.readFromPercentage(percentage);
   }
 }

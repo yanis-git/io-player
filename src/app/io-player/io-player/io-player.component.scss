@@ -188,8 +188,22 @@
     width: 100%;
     height: 4px;
     border-radius: 15px;
-    margin-top: 3px;
+    margin-top: 0;
     position: relative;
+  }
+  &__timelineHit {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    background: transparent;
+    width: 100%;
+    height: 15px;
+
+    &:focus {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      outline: 0;
+    }
   }
   #playhead {
     position: absolute;
