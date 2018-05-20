@@ -1,27 +1,26 @@
-# IoPlayer
+# IoPlayer - Audio Player web component
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) 6.0.3.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Usage Example 
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Simply consume this component as any Native DOM element
 
-## Build
+```
+<io-player
+	src="https://cchound.ams3.digitaloceanspaces.com/Kontekst%20-%20Destiny.mp3"
+	cover="https://78.media.tumblr.com/_1524644366_cover.png"
+	song="Destiny"
+	author="Kontekst"
+  ></io-player>  
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+If you need to be award of progression :
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+document.getElementsByTagName('io-player')[0].addEventListener('progression', function($event) {
+      console.log($event);
+  },true);
+```
