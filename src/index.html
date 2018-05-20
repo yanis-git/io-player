@@ -17,4 +17,9 @@
           author="Kontekst"
   ></io-player>
 </body>
+<script>
+  document.getElementsByTagName('io-player')[0].addEventListener('progression',function(e) {
+      console.log(e);
+  },true);
+</script>
 </html>

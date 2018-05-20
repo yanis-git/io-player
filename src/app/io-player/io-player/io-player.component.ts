@@ -1,12 +1,16 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Subscription} from 'rxjs/index';
+import {
+    ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
+    ViewChild
+} from '@angular/core';
+import {Subscription} from 'rxjs/internal/Subscription';
 import {IoPlayerService} from './io-player.service';
 
 @Component({
   selector: 'io-player',
   templateUrl: './io-player.component.html',
   styleUrls: ['./io-player.component.scss'],
-  providers: [IoPlayerService]
+  providers: [IoPlayerService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IoPlayerComponent implements OnInit, OnDestroy {
 
@@ -15,20 +19,32 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
   @Input('cover') cover: string;
   @Input('author') author: string;
   @Input('song') song: string;
-
+  @Output('progression') progression$: EventEmitter<number>;
   @ViewChild('coverEl') coverElement: ElementRef;
   @ViewChild('timelineBar') timelineElement: ElementRef;
   public isPlaying = false;
   public progression: number = 0;
   private subscriptions: Subscription[] = [];
 
-  constructor(public playerService: IoPlayerService) { }
+  constructor(
+      public playerService: IoPlayerService,
+      private changeRef: ChangeDetectorRef
+  ) {
+    this.progression$ = new EventEmitter<number>();
+  }
 
   ngOnInit() {
     this.playerService.init(this.source);
     this.subscriptions.push(
-        this.playerService.isPlaying$.subscribe(state => this.isPlaying = state),
-        this.playerService.percentageReaded$.subscribe(state => this.progression = state)
+        this.playerService.isPlaying$.subscribe(state => {
+            this.isPlaying = state;
+            this.changeRef.detectChanges();
+        }),
+        this.playerService.percentageReaded$.subscribe(state => {
+          this.progression = state;
+          this.progression$.emit(state);
+          this.changeRef.detectChanges();
+        })
     );
   }
 

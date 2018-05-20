@@ -1,8 +1,12 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {BehaviorSubject, fromEvent, Observable, Subscription} from 'rxjs/index';
+
+import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
+import {Observable} from 'rxjs/internal/Observable';
+import {Subscription} from 'rxjs/internal/Subscription';
+
+import {fromEvent} from 'rxjs/internal/observable/fromEvent';
 import {map} from 'rxjs/internal/operators';
 import {fromPromise} from 'rxjs/internal/observable/fromPromise';
-
 
 @Injectable()
 export class IoPlayerService implements OnDestroy {
@@ -57,12 +61,21 @@ export class IoPlayerService implements OnDestroy {
             return (this._audio.currentTime / this._audio.duration) * 100;
         }));
     }
+
+    /**
+     * 
+     * @return {Observable<void>}
+     */
     get audioFinish$(): Observable<void> {
         return fromEvent(this._audio, 'ended').pipe(map(() => {
             return null;
         }));
     }
 
+    /**
+     * @description Observable to determine if current sound is playing or not.
+     * @return {Observable<boolean>}
+     */
     get isPlaying$(): Observable<boolean> {
         return this._isPlaying$.asObservable();
     }
