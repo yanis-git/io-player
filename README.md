@@ -2,11 +2,41 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) 6.0.3.
 
+##Requirement
 
-## Usage Example 
+* Angular 6.x.x
+* RxJS 6.x.x
 
 
-Simply consume this component as any Native DOM element
+## installation
+
+```
+yarn add io-player
+npm i --save io-player
+```
+
+add to your `polyfill.ts`
+
+```
+import '@webcomponents/custom-elements/src/native-shim';
+import '@webcomponents/custom-elements/custom-elements.min';
+```
+
+## Usage Example as Angular Module
+
+On your `app.module.ts` add your import :
+
+```
+  import { IoPlayerModule } from 'io-player';
+  // [...]
+  imports: [
+    IoPlayerModule
+  ]
+```
+
+## Usage Example as WebComponent
+
+Use CDN or `io-player` package then simply consume this component as any Native DOM element
 
 ```
 <io-player
@@ -24,3 +54,15 @@ document.getElementsByTagName('io-player')[0].addEventListener('progression', fu
       console.log($event);
   },true);
 ```
+
+
+## properties : 
+ 
+ * **src :** Link to mp3 file.
+ * **cover :** Link to cover image file.
+ * **song :** Name of the song
+ * **author :** Name of author.
+
+## Event : 
+
+ * **progression:** Pourcentage of current playing sound.

@@ -1,7 +1,7 @@
 {
   "name": "io-player",
   "description": "IoPlayer - Audio Player web component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "repository" : {
     "type" : "git",
@@ -14,11 +14,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng-packagr -p package.json"
+    "build:lib": "ng build --prod && ng-packagr -p package.json"
   },
   "private": false,
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "ngPackage": {
+    "deleteDestPath": false,
     "lib": {
       "entryFile": "src/public_api.ts"
     },
