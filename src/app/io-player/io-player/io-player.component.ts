@@ -19,11 +19,14 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
   @Input('cover') cover: string;
   @Input('author') author: string;
   @Input('song') song: string;
+
   @Output('progression') progression$: EventEmitter<number>;
+
   @ViewChild('coverEl') coverElement: ElementRef;
   @ViewChild('timelineBar') timelineElement: ElementRef;
+
   public isPlaying = false;
-  public progression: number = 0;
+  public progression = 0;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -52,6 +55,9 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
+  /**
+   * Click handler on play pause button.
+   */
   onPlayHandler() {
     if (!this.isPlaying) {
       this.playerService.play();
@@ -59,6 +65,11 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
       this.playerService.pause();
     }
   }
+
+  /**
+   * Click Handler on timeline bar
+   * @param {MouseEvent} $event
+   */
   onChangeTimelinekHandler($event: MouseEvent) {
       const percentage = Math.floor(($event.offsetX / this.timelineElement.nativeElement.offsetWidth) * 100);
       this.playerService.readFromPercentage(percentage);

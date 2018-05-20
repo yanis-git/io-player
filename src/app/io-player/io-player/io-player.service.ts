@@ -10,14 +10,31 @@ import {fromPromise} from 'rxjs/internal/observable/fromPromise';
 
 @Injectable()
 export class IoPlayerService implements OnDestroy {
+    /**
+     * @private
+     * @type HTMLAudioElement
+     */
     private _audio: HTMLAudioElement;
+    /**
+     * @type {boolean}
+     * @private
+     */
     private _isPlaying = false;
+    /**
+     * @private
+     * @type BehaviorSubject<boolean>
+     */
     private _isPlaying$: BehaviorSubject<boolean>;
+    /**
+     * @private
+     * @type {Subscription[]}
+     */
     private subscriptions: Subscription[] = [];
 
     constructor() {
         this._isPlaying$ = new BehaviorSubject(this._isPlaying);
     }
+
 
     ngOnDestroy() {
         if (this._isPlaying) {
@@ -26,12 +43,19 @@ export class IoPlayerService implements OnDestroy {
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 
+    /**
+     * @description initiatize audio player.
+     * @param {string} source
+     */
     init(source: string) {
         this._audio = document.createElement('audio');
         this._audio.src = source;
         this.audioFinish$.subscribe(() => this.pause());
     }
 
+    /**
+     * @description API to play current player.
+     */
     play() {
         if (!this._isPlaying) {
             fromPromise(this._audio.play()).subscribe(() => {
@@ -40,6 +64,9 @@ export class IoPlayerService implements OnDestroy {
         }
     }
 
+    /**
+     * @description API to pause player.
+     */
     pause() {
         if (this._isPlaying) {
             this._audio.pause();
@@ -47,15 +74,26 @@ export class IoPlayerService implements OnDestroy {
         }
     }
 
+    /**
+     * @description ask for specific pourcentage position.
+     * @param {number} percentage
+     */
     readFromPercentage(percentage: number) {
         this._audio.currentTime = this._audio.duration * percentage / 100;
     }
 
+    /**
+     * @description switch isPlaying state.
+     */
     private toggleIsPlaying() {
         this._isPlaying = !this._isPlaying;
         this._isPlaying$.next(this._isPlaying);
     }
 
+    /**
+     * @description observable of current percentage position in audio.
+     * @return {Observable<number>}
+     */
     get percentageReaded$(): Observable<number> {
         return fromEvent(this._audio, 'timeupdate').pipe(map(() => {
             return (this._audio.currentTime / this._audio.duration) * 100;
@@ -63,7 +101,7 @@ export class IoPlayerService implements OnDestroy {
     }
 
     /**
-     * 
+     * @description observable who notify when 'ended' audio event is fire.
      * @return {Observable<void>}
      */
     get audioFinish$(): Observable<void> {
