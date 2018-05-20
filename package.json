@@ -1,16 +1,41 @@
 {
   "name": "io-player",
+  "description": "IoPlayer - Audio Player web component",
   "version": "1.0.0",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/yanis-git/io-player.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:lib": "ng-packagr -p package.json"
   },
-  "private": true,
+  "private": false,
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/public_api.ts"
+    },
+    "whitelistedNonPeerDependencies": [
+      "@angular",
+      "@webcomponents",
+      "core-js",
+      "rxjs",
+      "zone.js"
+    ]
+  },
+  "peerDependencies": {
+    "core-js": "^2.5.4",
+    "rxjs": "^6.0.0",
+    "zone.js": "^0.8.24",
+    "@webcomponents/custom-elements": "^1.1.0"
+  },
   "dependencies": {
     "@angular/animations": "^6.0.0",
     "@angular/common": "^6.0.0",
@@ -24,7 +49,6 @@
     "@angular/router": "^6.0.0",
     "@webcomponents/custom-elements": "^1.1.0",
     "core-js": "^2.5.4",
-    "gsap": "^1.20.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.24"
   },

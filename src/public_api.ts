@@ -1,0 +1,1 @@
+export * from './app/io-player/io-player.module';

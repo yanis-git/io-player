@@ -68,7 +68,6 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
 
   /**
    * Click Handler on timeline bar
-   * @param {MouseEvent} $event
    */
   onChangeTimelinekHandler($event: MouseEvent) {
       const percentage = Math.floor(($event.offsetX / this.timelineElement.nativeElement.offsetWidth) * 100);

@@ -10,25 +10,10 @@ import {fromPromise} from 'rxjs/internal/observable/fromPromise';
 
 @Injectable()
 export class IoPlayerService implements OnDestroy {
-    /**
-     * @private
-     * @type HTMLAudioElement
-     */
+
     private _audio: HTMLAudioElement;
-    /**
-     * @type {boolean}
-     * @private
-     */
     private _isPlaying = false;
-    /**
-     * @private
-     * @type BehaviorSubject<boolean>
-     */
     private _isPlaying$: BehaviorSubject<boolean>;
-    /**
-     * @private
-     * @type {Subscription[]}
-     */
     private subscriptions: Subscription[] = [];
 
     constructor() {
@@ -45,7 +30,6 @@ export class IoPlayerService implements OnDestroy {
 
     /**
      * @description initiatize audio player.
-     * @param {string} source
      */
     init(source: string) {
         this._audio = document.createElement('audio');
@@ -76,7 +60,6 @@ export class IoPlayerService implements OnDestroy {
 
     /**
      * @description ask for specific pourcentage position.
-     * @param {number} percentage
      */
     readFromPercentage(percentage: number) {
         this._audio.currentTime = this._audio.duration * percentage / 100;
@@ -92,7 +75,6 @@ export class IoPlayerService implements OnDestroy {
 
     /**
      * @description observable of current percentage position in audio.
-     * @return {Observable<number>}
      */
     get percentageReaded$(): Observable<number> {
         return fromEvent(this._audio, 'timeupdate').pipe(map(() => {
@@ -102,7 +84,6 @@ export class IoPlayerService implements OnDestroy {
 
     /**
      * @description observable who notify when 'ended' audio event is fire.
-     * @return {Observable<void>}
      */
     get audioFinish$(): Observable<void> {
         return fromEvent(this._audio, 'ended').pipe(map(() => {
@@ -112,7 +93,6 @@ export class IoPlayerService implements OnDestroy {
 
     /**
      * @description Observable to determine if current sound is playing or not.
-     * @return {Observable<boolean>}
      */
     get isPlaying$(): Observable<boolean> {
         return this._isPlaying$.asObservable();
