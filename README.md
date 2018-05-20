@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) 6.0.3.
 
+[You can see it in action](https://unpkg.com/io-player@1.0.2/index.html)
+
 ##Requirement
 
 * Angular 6.x.x
@@ -36,7 +38,7 @@ On your `app.module.ts` add your import :
 
 ## Usage Example as WebComponent
 
-Use CDN or `io-player` package then simply consume this component as any Native DOM element
+Use [CDN](https://unpkg.com/io-player@1.0.2/io-player.pkg.jshttps://unpkg.com/io-player@1.0.2/io-player.pkg.js) or `io-player` package then simply consume this component as any Native DOM element
 
 ```
 <io-player
@@ -66,3 +68,10 @@ document.getElementsByTagName('io-player')[0].addEventListener('progression', fu
 ## Event : 
 
  * **progression:** Pourcentage of current playing sound.
+ 
+ 
+## Credit :
+
+Special thanks to :
+* [nitayneeman](https://github.com/nitayneeman/made-with-love) for inspiring me about how to build WebComponent.
+* [Valery Alikin](https://codepen.io/AlikinVV/pen/ZxgyoE) who inspire me original design.

@@ -1,11 +1,21 @@
 {
   "name": "io-player",
   "description": "IoPlayer - Audio Player web component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/yanis-git/io-player.git"
+  "keywords": [
+    "Angular",
+    "Custom",
+    "Element",
+    "Web",
+    "Component",
+    "AngularElements",
+    "CustomElements",
+    "WebComponents"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yanis-git/io-player.git"
   },
   "scripts": {
     "ng": "ng",
@@ -14,7 +24,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build --prod && ng-packagr -p package.json"
+    "build:lib": "ng build --prod && gulp && ng-packagr -p package.json"
   },
   "private": false,
   "$schema": "./node_modules/ng-packagr/package.schema.json",
