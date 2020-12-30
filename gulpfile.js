@@ -8,4 +8,4 @@ gulp.task('concat', function() {
 });
 
 
-gulp.task('default', ['concat']);
+gulp.task('default', gulp.series('concat'));

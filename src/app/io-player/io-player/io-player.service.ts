@@ -1,12 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
+import {BehaviorSubject, from, fromEvent, Observable, Subscription} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
-import {Observable} from 'rxjs/internal/Observable';
-import {Subscription} from 'rxjs/internal/Subscription';
-
-import {fromEvent} from 'rxjs/internal/observable/fromEvent';
-import {map} from 'rxjs/internal/operators';
-import {fromPromise} from 'rxjs/internal/observable/fromPromise';
 
 @Injectable()
 export class IoPlayerService implements OnDestroy {
@@ -42,7 +37,7 @@ export class IoPlayerService implements OnDestroy {
      */
     play() {
         if (!this._isPlaying) {
-            fromPromise(this._audio.play()).subscribe(() => {
+            from(this._audio.play()).subscribe(() => {
                 this.toggleIsPlaying();
             });
         }
