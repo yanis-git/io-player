@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 12.8
-        uses: actions/setup-node@v21
+        uses: actions/setup-node@v2
         with:
           node-version: 12.8
       - name: Install dependencies
