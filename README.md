@@ -3,10 +3,11 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) 6.0.3.
 
 [You can see it in action](https://unpkg.com/io-player@1.0.2/index.html)
+[or even here](https://io-player.netlify.app/)
 
 ## Requirement
 
-* Angular 6.x.x
+* Angular 11.x.x
 * RxJS 6.x.x
 
 
@@ -52,9 +53,9 @@ Use [CDN](https://unpkg.com/io-player@1.0.2/io-player.pkg.jshttps://unpkg.com/io
 If you need to be award of progression :
 
 ```
-document.getElementsByTagName('io-player')[0].addEventListener('progression', function($event) {
-      console.log($event);
-  },true);
+document.querySelector('io-player').addEventListener('progression', $event => {
+  console.log($event);
+}, true);
 ```
 
 
