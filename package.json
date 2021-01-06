@@ -1,7 +1,7 @@
 {
   "name": "io-player",
   "description": "IoPlayer - Audio Player web component",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "keywords": [
     "Angular",
@@ -24,7 +24,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build --prod && gulp && ng-packagr -p package.json"
+    "build:lib": "ng build --prod && gulp && ng-packagr -p package.json",
+    "publish:lib": "cd dist && npm publish && cd .."
   },
   "private": false,
   "$schema": "./node_modules/ng-packagr/package.schema.json",
