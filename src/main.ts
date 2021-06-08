@@ -7,7 +7,7 @@ import 'core-js/es7/reflect';
 import '@webcomponents/custom-elements/src/native-shim';
 // Used for browsers without a native support of Custom Elements
 import '@webcomponents/custom-elements/custom-elements.min';
-import 'zone.js/dist/zone';  // Included with Angular CLI.
+import 'zone.js';  // Included with Angular CLI.
 
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
