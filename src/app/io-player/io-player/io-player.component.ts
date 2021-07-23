@@ -15,11 +15,12 @@ import {IoPlayerService} from './io-player.service';
 export class IoPlayerComponent implements OnInit, OnDestroy {
 
 
-  @Input('src') source: string;
-  @Input('cover') cover: string;
-  @Input('author') author: string;
-  @Input('song') song: string;
+  @Input() src: string;
+  @Input() cover: string;
+  @Input() author: string;
+  @Input() song: string;
 
+  // eslint-disable-next-line  @angular-eslint/no-output-rename
   @Output('progression') progression$: EventEmitter<number>;
 
   @ViewChild('coverEl') coverElement: ElementRef;
@@ -37,7 +38,7 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.playerService.init(this.source);
+    this.playerService.init(this.src);
     this.subscriptions.push(
         this.playerService.isPlaying$.subscribe(state => {
             this.isPlaying = state;
