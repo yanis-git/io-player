@@ -20,6 +20,10 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
   @Input() author: string;
   @Input() song: string;
 
+  @Input() set fastForward(step:string) {
+    this.forwardOffsetStep = parseFloat(step);
+  }
+
   // eslint-disable-next-line  @angular-eslint/no-output-rename
   @Output('progression') progression$: EventEmitter<number>;
 
@@ -28,6 +32,7 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
 
   public isPlaying = false;
   public progression = 0;
+  public forwardOffsetStep: number = 10.0;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -73,5 +78,12 @@ export class IoPlayerComponent implements OnInit, OnDestroy {
   onChangeTimelinekHandler($event: MouseEvent) {
       const percentage = Math.floor(($event.offsetX / this.timelineElement.nativeElement.offsetWidth) * 100);
       this.playerService.readFromPercentage(percentage);
+  }
+
+  onFastBackwardHandler() {
+    this.playerService.backward(this.forwardOffsetStep);
+  }
+  onFastForwardHandler() {
+    this.playerService.forward(this.forwardOffsetStep);
   }
 }
