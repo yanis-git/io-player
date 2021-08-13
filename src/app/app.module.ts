@@ -12,5 +12,4 @@ import {IoPlayerModule} from './io-player/io-player.module';
   providers: [],
   bootstrap: []
 })
-export class AppModule {
-}
+export class AppModule { }

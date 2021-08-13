@@ -47,10 +47,19 @@ export class IoPlayerService implements OnDestroy {
      * @description API to pause player.
      */
     pause() {
-        if (this._isPlaying) {
-            this._audio.pause();
-            this.toggleIsPlaying();
-        }
+      if (!this._isPlaying) return;
+      this._audio.pause();
+      this.toggleIsPlaying();
+    }
+
+    forward(offset = 10.0) {
+      if (!this._isPlaying) return;
+      this._audio.currentTime += offset;
+    }
+
+    backward(offset = 10.0) {
+      if (!this._isPlaying) return;
+      this._audio.currentTime -= offset;
     }
 
     /**
