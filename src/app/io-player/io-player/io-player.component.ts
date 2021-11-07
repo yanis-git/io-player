@@ -13,8 +13,6 @@ import {IoPlayerService} from './io-player.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IoPlayerComponent implements OnInit, OnDestroy {
-
-
   @Input() src: string;
   @Input() cover: string;
   @Input() author: string;
