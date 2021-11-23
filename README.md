@@ -7,8 +7,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Requirement
 
-* Angular 11.x.x
-* RxJS 6.x.x
+* Angular 13.x.x
+* RxJS 7.x.x
 
 
 ## installation
