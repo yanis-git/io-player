@@ -1,6 +1,6 @@
 # IoPlayer - Audio Player web component
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) 6.0.3.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2fc24c79-e90b-4d1e-aec5-cd59e144921d/deploy-status)](https://app.netlify.com/sites/io-player/deploys)
 
 [You can see it in action](https://unpkg.com/io-player@1.0.2/index.html)
 [or even here](https://io-player.netlify.app/)
