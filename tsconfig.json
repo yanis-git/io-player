@@ -6,7 +6,7 @@
     "declaration": false,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "target": "es6",
+    "target": "esnext",
     "typeRoots": [
       "node_modules/@types"
     ],
