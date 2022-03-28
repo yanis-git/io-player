@@ -24,24 +24,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build --configuration production && gulp && ng-packagr -p package.json",
+    "build:lib": "ng build --configuration production && gulp && ng-packagr -p ng-package.json",
     "publish:lib": "cd dist && npm publish && cd .."
   },
   "private": false,
   "$schema": "./node_modules/ng-packagr/package.schema.json",
-  "ngPackage": {
-    "deleteDestPath": false,
-    "lib": {
-      "entryFile": "src/public_api.ts"
-    },
-    "allowedNonPeerDependencies": [
-      "@angular",
-      "@webcomponents",
-      "core-js",
-      "rxjs",
-      "zone.js"
-    ]
-  },
   "dependencies": {
     "@angular/animations": "^13.0.0",
     "@angular/common": "^13.0.0",
@@ -53,7 +40,7 @@
     "@angular/platform-browser-dynamic": "^13.0.0",
     "@angular/router": "^13.0.0",
     "@webcomponents/custom-elements": "^1.5.0",
-    "core-js": "^2.5.4",
+    "core-js": "^3.0.0",
     "rxjs": "^7.0.0",
     "zone.js": "~0.11.4"
   },
@@ -84,7 +71,6 @@
     "karma-jasmine-html-reporter": "^1.7.0",
     "ng-packagr": "^13.0.3",
     "protractor": "~7.0.0",
-    "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "^4.3.5"
   }

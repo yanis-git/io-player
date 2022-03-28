@@ -1,0 +1,13 @@
+{
+  "deleteDestPath": false,
+  "lib": {
+    "entryFile": "src/public_api.ts"
+  },
+  "allowedNonPeerDependencies": [
+    "@angular",
+    "@webcomponents",
+    "core-js",
+    "rxjs",
+    "zone.js"
+  ]
+}
