@@ -4,20 +4,17 @@ import {DoBootstrap, Injector, NgModule} from '@angular/core';
 import {createCustomElement} from '@angular/elements';
 
 @NgModule({
-  declarations: [
-    IoPlayerComponent
-  ],
-  entryComponents: [
-    IoPlayerComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  exports: [
-    IoPlayerComponent
-  ],
-  providers: [],
-  bootstrap: []
+    declarations: [
+        IoPlayerComponent
+    ],
+    imports: [
+        BrowserModule
+    ],
+    exports: [
+        IoPlayerComponent
+    ],
+    providers: [],
+    bootstrap: []
 })
 export class IoPlayerModule implements DoBootstrap {
   constructor(private injector: Injector) {
